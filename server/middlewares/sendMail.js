@@ -1,15 +1,21 @@
 import {createTransport} from 'nodemailer';
 
 const sendMail = async(email, subject, data) => {
+
+    console.log('Gmail User:', process.env.Gmail);
+    console.log('Password Length:', process.env.Password?.length);
+    console.log('Password (first 4 chars):', process.env.Password?.substring(0, 4));
+
     const transport = createTransport({
         host: "smtp.gmail.com",
         port: 465,
+        secure: true,
         auth: {
             user: process.env.Gmail,
-            pass: process.env.Password,
+            pass: process.env.Password
         },
     });
-
+ 
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
